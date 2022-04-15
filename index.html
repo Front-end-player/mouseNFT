@@ -18,21 +18,22 @@
     <link href="assets/css/roadmap.css" rel="stylesheet" type="text/css">
     <link href="assets/css/footer.css" rel="stylesheet" type="text/css">
     <link href="assets/css/myswiper.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="assets/css/buy.css">
     <link rel="stylesheet" href="assets/css/modal.css">
     <!-- libs -->
     <script src="assets/js/lib/dev/jQuery.js"></script>
-    <script src="dist/WalletConnectProvider.js"></script>
+    <!--    <script src="dist/WalletConnectProvider.js"></script>-->
     <!--  <script src="https://cdn.ethers.io/scripts/ethers-v4.min.js" charset="utf-8"  type="text/javascript"></script>
     --> <!-- <script src="assets/js/lib/jquery-3.3.1.min.js"></script>-->
     <!--	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>-->
     <!-- to Top jq-->
     <script>
-     /*   console.log(ethers)
-        window.ethereum.enable()
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        (async () => {
-            await provider.send("eth_requestAccounts", []);
-        })(); */
+        /*   console.log(ethers)
+           window.ethereum.enable()
+           const provider = new ethers.providers.Web3Provider(window.ethereum);
+           (async () => {
+               await provider.send("eth_requestAccounts", []);
+           })(); */
         $(function () {
             $(window).scroll(function () {
                 var nowTop = $(document).scrollTop();
@@ -135,7 +136,7 @@
                 <ul>
                     <li><a href="index.html"><strong class="menu-buts">HOME</strong></a></li>
                     <li><a href="page/arkofape/arkofape.html"><strong class="menu-buts">GAMEFI</strong></a></li>
-                    <li><a href="#"><strong class="menu-buts">NFTS</strong></a></li>
+                    <li><a href="#nft_wrap"><strong class="menu-buts">NFTS</strong></a></li>
                     <li><a href="#"><img alt="" src="assets/images/button/f.png" width="20" class="menu-buts"></a></li>
                     <li><a href="#"><img alt="" src="assets/images/button/fb.png" width="20" class="menu-buts"></a></li>
                     <li><a href="https://twitter.com/BLUEFIR59376829"><img alt="" src="assets/images/button/g.png"
@@ -153,6 +154,28 @@
         <!--		<div><a href="#"><img alt="" src="assets/images/button/connect-wallet.png" id="connect-wallet"></a></div>-->
         <div class="menu-toggle"><img alt="" src="assets/images/button/bar.png" width="50vw"></div>
         <!--		<div class="menu-toggle"><i class="fa-american-sign-language-interpreting" aria-hidden="true"></i></div>-->
+    </div>
+    <!-- buy NFT -->
+    <div class="buy_wrapper" id="buy_content">
+        <div class="buy_content">
+            <div class="buy_nft_visualizer">
+                <div class="nft_content">
+                    <img src="assets/images/buy/nft.png" alt="">
+                    <div class="action">
+                        <p class="price">0.26</p>
+                        <div class="change_amount">
+                            <button class="amount_reduce"></button>
+                            <span class="buy_amount">1</span>
+                            <button class="amount_add"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="buy_nft_action">
+                <button class="view_btn"></button>
+                <button class="buy_btn"></button>
+            </div>
+        </div>
     </div>
     <!-- 递进场景 -->
     <div id="scenes-div" class="other-div">
@@ -198,7 +221,7 @@
     <!-- 轮播 -->
     <!-- Swiper 1 -->
 
-    <div class="other-div">
+    <div class="other-div" id="nft_wrap">
         <div class="center-img"><img class="margin-img" src="assets/images/rotation-chart/title.png" alt=""></div>
         <div class="button-next"><img alt="" src="assets/images/rotation-chart/left.png"></div>
         <div class="swiper mySwiper" id="swiper-demo">
@@ -482,8 +505,6 @@
 <!-- Swiper JS -->
 <script src="assets/js/lib/swiper-bundle.min.js"></script>
 
-<!-- connect Wallet  -->
-<script src="assets/js/connectWallet.js" type="module"></script>
 <!-- Initialize Swiper -->
 <script>
     var hs_screen_width = document.body.clientWidth;
@@ -521,6 +542,55 @@
         console.dir(myvideo2)
         // myvideo2.play();
     }
+</script>
+
+<script type="module">
+    import web3 from './assets/js/connectWallet.js';
+    const {ethers} =web3;
+    // click to buy
+    $(() => {
+        $("#scene6").on('click', () => {
+            console.log(11)
+            $('.buy_wrapper').show();
+            $('body,html').animate({
+                scrollTop: 0
+            }, 200)
+        })
+        $('body')
+            .on('click', '.view_btn', () => {
+                window.open('https://opensea.io')
+            })
+            .on('click', '.buy_btn', () => {
+                const connectorId = sessionStorage.getItem('connector')
+                if (connectorId) {
+                    const web3Provider = new ethers.providers.Web3Provider(window.ethereum);
+                    console.log(web3Provider)
+                }
+            })
+        const oPrice = $('.price');
+        const nftPrice = 0.26;
+        let price = oPrice.text(nftPrice);
+        let oBuyAmount = $('.buy_amount');
+        // oBuyAmount.text(buyAmount)
+        $('.amount_add').on('click', function(){
+            let a = Number(oBuyAmount.text())
+            a++
+            console.log('1111')
+            oBuyAmount.text(a)
+            price =  (a*nftPrice).toFixed(3);
+            oPrice.text(price)
+        })
+        $('.amount_reduce').on('click', function(){
+            let a = Number(oBuyAmount.text())
+            if (a<=1) {
+                return;
+            }
+            a--
+            oBuyAmount.text(a)
+            price = (a*nftPrice).toFixed(3);
+            oPrice.text(price)
+        })
+    })
 </script>
 </body>
 </html>

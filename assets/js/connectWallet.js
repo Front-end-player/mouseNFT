@@ -1,4 +1,7 @@
-import {ethers} from './lib/dev/ethers.js'
+import * as lib from './lib/dev/ethers.js'
+import '../../dist/WalletConnectProvider.js'
+const {ethers} = lib
+
 window.onload = () => {
     const oWalletBtn = $('#connect-but');
 
@@ -28,17 +31,38 @@ window.onload = () => {
             const {wallet} = this.dataset;
             if (ethereum) {
                 if (wallet === 'metamask') {
-                    const account = await ethereum.enable();
-                    console.log(account)
+                    window.web3Provider = new ethers.providers.Web3Provider(window.ethereum);
+                    try {
+                        window.accounts = await ethereum.enable();
+                        alert('Connect Success');
+                        $('#custom_modal').remove()
+                        window.sessionStorage.setItem('connector', 'metamask')
+                    } catch (e) {
+                        console.log('modal cancel')
+                        if (!window.accounts) {
+                            window.sessionStorage.removeItem('connector')
+                        }
+                    }
                 }
                 if (wallet === 'walletConnect') {
-                    const provider = new WalletConnectProvider({
+                    const _provider = new WalletConnectProvider({
                         rpc: {
-                            42: 'https://kovan.infura.io/v3/82e68831ab08443a9eff3748cb6554e5'
+                            42: ''
                         }
                     })
-                    const accounts = await provider.enable();
-                    console.log(ethers, provider)
+                    window.web3Provider = new ethers.providers.Web3Provider(_provider)
+                    try {
+                        window.accounts = await _provider.enable();
+                        alert('Connect Success')
+                        $('#custom_modal').remove()
+                        window.sessionStorage.setItem('connector', 'walletConnect')
+                    } catch (e) {
+                        console.log('modal cancel')
+                        if (!window.accounts) {
+                            window.sessionStorage.removeItem('connector')
+                        }
+                    }
+
                 }
             }
         })
@@ -49,4 +73,8 @@ window.onload = () => {
     })
 
     // $('#custom_modal').on('click', function ())
+}
+export default {
+    ...lib,
+    WalletConnectProvider
 }
