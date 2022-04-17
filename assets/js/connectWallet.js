@@ -47,7 +47,7 @@ window.onload = () => {
                 if (wallet === 'walletConnect') {
                     const _provider = new WalletConnectProvider({
                         rpc: {
-                            42: ''
+                            4: ''
                         }
                     })
                     window.web3Provider = new ethers.providers.Web3Provider(_provider)

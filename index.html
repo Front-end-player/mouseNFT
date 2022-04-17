@@ -74,7 +74,7 @@
     <link rel="stylesheet" href="assets/js/lib/swiper-bundle.min.css"/>
     <!-- styles -->
     <link href="assets/css/swiper.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+<!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">-->
     <link rel="stylesheet" href="assets/js/lib/font-awesome.css">
 </head>
 
@@ -546,50 +546,97 @@
 
 <script type="module">
     import web3 from './assets/js/connectWallet.js';
-    const {ethers} =web3;
-    // click to buy
+    import {Whitepaper} from './assets/Whitepaper.js'
+    console.log('Whitepaper>>>', Whitepaper)
+
+    const {ethers , Contract, BigNumber} =web3;
+    // buy modules
     $(() => {
-        $("#scene6").on('click', () => {
-            console.log(11)
-            $('.buy_wrapper').show();
-            $('body,html').animate({
-                scrollTop: 0
-            }, 200)
-        })
-        $('body')
-            .on('click', '.view_btn', () => {
-                window.open('https://opensea.io')
+        const connectorId = sessionStorage.getItem('connector');
+        if (connectorId) {
+            if (connectorId === 'metamask') {
+                window.web3Provider = new ethers.providers.Web3Provider(window.ethereum);
+            }
+            if (connectorId === 'walletConnect'){
+                const _provider = new WalletConnectProvider({ rpc: {} })
+                window.web3Provider = new ethers.providers.Web3Provider(_provider)
+            }
+
+            $("#scene6").on('click', () => {
+                console.log(11)
+                $('.buy_wrapper').show();
+                $('body,html').animate({
+                    scrollTop: 0
+                }, 200)
             })
-            .on('click', '.buy_btn', () => {
-                const connectorId = sessionStorage.getItem('connector')
-                if (connectorId) {
-                    const web3Provider = new ethers.providers.Web3Provider(window.ethereum);
-                    console.log(web3Provider)
+            $('body')
+                .on('click', '.view_btn', () => {
+                    window.open('https://opensea.io')
+                })
+                .on('click', '.buy_btn',async () => {
+                    if (connectorId) {
+                        if (connectorId === 'metamask') {
+                            window.web3Provider = new ethers.providers.Web3Provider(window.ethereum);
+                        }
+                        if (connectorId === 'walletConnect'){
+                            const _provider = new WalletConnectProvider({ rpc: {} })
+                            window.web3Provider = new ethers.providers.Web3Provider(_provider)
+                        }
+                        if (web3Provider) {
+                            console.log(web3Provider)
+                            const account = web3Provider.provider.address;
+                            const signer = web3Provider.getSigner(account)
+                            const contract = new Contract(address, Whitepaper, signer);
+                            console.log(oBuyAmount.text())
+                            const tx = {
+                                gasLimit: 1000000 * oBuyAmount.text(),
+                                value: ethers.utils.parseEther(`${nftPrice * oBuyAmount.text()}`), // transfer value ->>  buy nft amount
+                            }
+                            const totalSupply = await contract.totalSupply();
+                            console.log("totalSupply>>>", totalSupply)
+                            // call contract methods ->>  buy action
+                            const mint = await contract.mint(oBuyAmount.text(), tx)
+                            console.log(mint)
+                            const result = await mint.wait();
+                            console.log('result>>', result)
+                        }
+                    }else{
+                        alert('Wallet not connected')
+                    }
+                })
+            // oBuyAmount.text(buyAmount)
+            $('.amount_add').on('click', function(){
+                let a = Number(oBuyAmount.text())
+                a++
+                console.log('1111')
+                oBuyAmount.text(a)
+                price =  (a*nftPrice).toFixed(3);
+                oPrice.text(price)
+            })
+            $('.amount_reduce').on('click', function(){
+                let a = Number(oBuyAmount.text())
+                if (a<=1) {
+                    return;
                 }
+                a--
+                oBuyAmount.text(a)
+                price = (a*nftPrice).toFixed(3);``
+                oPrice.text(price)
             })
+
+
+        }else{
+            alert('Wallet not connected')
+        }
+
+
+        const address = '0xA08Be7e395Ddc97de02ad1380d17eA9bAc771611';
         const oPrice = $('.price');
-        const nftPrice = 0.26;
+        const nftPrice = 0.05;
         let price = oPrice.text(nftPrice);
         let oBuyAmount = $('.buy_amount');
-        // oBuyAmount.text(buyAmount)
-        $('.amount_add').on('click', function(){
-            let a = Number(oBuyAmount.text())
-            a++
-            console.log('1111')
-            oBuyAmount.text(a)
-            price =  (a*nftPrice).toFixed(3);
-            oPrice.text(price)
-        })
-        $('.amount_reduce').on('click', function(){
-            let a = Number(oBuyAmount.text())
-            if (a<=1) {
-                return;
-            }
-            a--
-            oBuyAmount.text(a)
-            price = (a*nftPrice).toFixed(3);
-            oPrice.text(price)
-        })
+
+
     })
 </script>
 </body>
