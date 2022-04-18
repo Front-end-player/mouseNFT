@@ -1,0 +1,564 @@
+<style>
+    @font-face {
+        font-display: swap;
+        font-family: IBM Plex Mono;
+        src: url(https://d1kjtx52rxv2sn.cloudfront.net/website/fonts/ibm-plex-mono/IBMPlexMono-Regular.otf) format("opentype")
+    }
+
+    @font-face {
+        font-display: swap;
+        font-family: IBM Plex Mono;
+        src: url(https://d1kjtx52rxv2sn.cloudfront.net/website/fonts/ibm-plex-mono/IBMPlexMono-Regular.otf) format("opentype")
+    }
+
+    @font-face {
+        font-display: swap;
+        font-family: Big John;
+        src: url(https://d1kjtx52rxv2sn.cloudfront.net/website/fonts/bigjohn-webfont.woff) format("opentype")
+    }
+
+    @font-face {
+        font-display: swap;
+        font-family: Amatic SC;
+        src: url(https://d1kjtx52rxv2sn.cloudfront.net/website/fonts/amatic-sc/AmaticSC-Regular.ttf) format("truetype")
+    }
+
+    @font-face {
+        font-display: swap;
+        font-family: Amatic SC Bold;
+        src: url(https://d1kjtx52rxv2sn.cloudfront.net/website/fonts/amatic-sc/AmaticSC-Bold.ttf) format("truetype")
+    }
+
+
+    .buy_nft_visualizer_content {
+        background: #8C77FC;
+        border: 1px solid #8C77FC;
+        color: #8C77FC;
+        display: flex;
+        flex-direction: column;
+        font-family: IBM Plex Mono;
+        font-style: normal;
+        font-weight: 500;
+        min-height: 468px;
+        overflow: visible;
+        position: relative;
+        width: 350px;
+        z-index: 1
+    }
+
+    .buy_nft_visualizer_content:before {
+        background-color: #756ccf;
+        bottom: -8px;
+        content: "";
+        height: 100%;
+        position: absolute;
+        right: -8px;
+        width: 100%;
+        z-index: -1
+    }
+
+    .buy_nft_visualizer_content .buy_nft_img {
+        background: url('../../assets/images/buy/nftbg.png') repeat;
+        height: 300px;
+        margin-bottom: 8px;
+        position: relative;
+        width: 100%;
+        background-size: 100px;
+    }
+
+    .buy_nft_visualizer_content .buy_nft_img .buy_nft_img {
+        height: auto;
+        left: 50%;
+        position: absolute;
+        top: 50%;
+        -webkit-transform: translate3d(-50%, -50%, 0);
+        transform: translate3d(-50%, -50%, 0);
+        width: 90%;
+        background: unset;
+    }
+
+    .buy_nft_visualizer_content .buy_nft_img .buy_nft {
+        height: auto;
+        left: 51.2%;
+        position: absolute;
+        top: 72%;
+        -webkit-transform: translate3d(-50%, -50%, 0);
+        transform: translate3d(-50%, -50%, 0);
+        width: 399px;
+    }
+
+    .buy_nft_visualizer_content .buy_nft_img .src-components-Buy-DoBuyCard-DoBuyCard-module__star--nQkwc {
+        bottom: -30px;
+        position: absolute;
+        right: -30px
+    }
+
+    .buy_nft_visualizer_content .buy_nft_action_wrapper {
+        background: #1e1d33;
+        border-bottom: 1px solid #8880db;
+        border-radius: 1px;
+        box-sizing: border-box;
+        display: flex;
+        flex-grow: 1;
+        padding: 0 30px;
+        vertical-align: middle
+    }
+
+    .buy_nft_visualizer_content .buy_nft_action_wrapper:last-child {
+        border-bottom: none
+    }
+
+    .buy_nft_visualizer_content .buy_nft_action_wrapper span {
+        align-self: center;
+        line-height: 73.5px
+    }
+
+    .buy_nft_visualizer_content .buy_nft_action_wrapper .buy_nft_info {
+        font-size: 24px;
+        width: 110px;
+        font-weight: bolder;
+    }
+
+    .buy_nft_visualizer_content .buy_nft_action_wrapper .buy_nft_action_price {
+        color: #ea3378;
+        font-family: Big John;
+        font-size: 28px
+    }
+
+    .buy_nft_visualizer_content .buy_nft_action_wrapper .buy_nft_symbol {
+        color: #8C77FC;
+        font-family: IBM Plex Mono;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: bolder;
+        margin-left: 10px;
+    }
+
+    .buy_nft_visualizer_content .buy_nft_action_wrapper .buy_action_btn {
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        display: flex;
+    }
+
+    .buy_nft_visualizer_content .buy_nft_action_wrapper .buy_action_btn img {
+        align-self: center;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        width: 20px;
+    }
+
+    .buy_nft_visualizer_content .buy_nft_action_wrapper .buy_action_btn .buy_nft_action_amount {
+        align-self: center;
+        color: rgba(24, 45, 239, .8);
+        font-family: IBM Plex Mono;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 400;
+        padding: 0 12px;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none
+    }
+
+    .buy_content {
+        width: 98vw;
+        display: flex;
+        overflow: visible;
+        padding: 0 !important;
+        position: relative;
+        top: 20px;
+        z-index: 1;
+        margin: 0 auto;
+    }
+
+    .buy_content:before {
+        border: 1px solid #8C77FC;
+        bottom: -10px;
+        content: "";
+        left: 12px;
+        position: absolute;
+        right: 12px;
+        top: -10px;
+        z-index: 1
+    }
+
+    .buy_content .src-components-Buy-DoBuy-DoBuy-module__border--b32YU {
+        border-left: 1px solid #8C77FC;
+        border-right: 1px solid #8C77FC;
+        height: 1500px;
+        position: absolute;
+        width: 8px
+    }
+
+    .buy_content .buy_nft_visualizer {
+        overflow: visible;
+        padding: 80px 196px 43px 80px;
+        position: relative;
+        -webkit-transform: translateX(22.5px);
+        transform: translateX(22.5px);
+        z-index: 10
+    }
+
+    .buy_content .buy_nft_visualizer .buy_nft_visualizer_content {
+        z-index: 10
+    }
+
+    .buy_content .buy_nft_visualizer:before {
+        background-color: #8C77FC;
+        bottom: -1px;
+        -webkit-clip-path: polygon(100% 0, 90% 100%, 0 100%, 0 0);
+        clip-path: polygon(100% 0, 90% 100%, 0 100%, 0 0);
+        content: "";
+        left: -1px;
+        position: absolute;
+        right: -1px;
+        top: -1px;
+        z-index: 1
+    }
+
+    .buy_content .buy_nft_visualizer:after {
+        background-color: #1E1D32;
+        background-image: linear-gradient(#3a3860 1px, transparent 0), linear-gradient(90deg, #3a3860 1px, transparent 0);
+        background-size: 25px 25px, 25px 25px;
+        bottom: 0;
+        -webkit-clip-path: polygon(100% 0, 90% 100%, 0 100%, 0 0);
+        clip-path: polygon(100% 0, 90% 100%, 0 100%, 0 0);
+        content: "";
+        height: 100%;
+        position: absolute;
+        right: 0;
+        width: 100%;
+        z-index: 2
+    }
+
+    .buy_content .buy_right_content {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        overflow: visible;
+        padding: 20px 0 43px 0;
+        position: relative;
+        -webkit-transform: translateX(-22.5px);
+        transform: translateX(-22.5px);
+        z-index: 10
+    }
+
+    .buy_content .buy_right_content > * {
+        z-index: 10
+    }
+
+    .buy_content .buy_right_content:before {
+        background-color: #8C77FC;
+        bottom: -1px;
+        -webkit-clip-path: polygon(100% 0, 100% 100%, 0 100%, 55px 0);
+        clip-path: polygon(100% 0, 100% 100%, 0 100%, 55px 0);
+        content: "";
+        left: -1px;
+        position: absolute;
+        right: -1px;
+        top: -1px;
+        z-index: 1
+    }
+
+    .buy_content .buy_right_content:after {
+        background-color: #1E1D32;
+        bottom: 0;
+        -webkit-clip-path: polygon(100% 0, 100% 100%, 0 100%, 55px 0);
+        clip-path: polygon(100% 0, 100% 100%, 0 100%, 55px 0);
+        content: "";
+        height: 100%;
+        left: 0;
+        position: absolute;
+        width: 100%;
+        z-index: 2
+    }
+
+    .buy_content .buy_right_content h1{
+        margin: 0;
+        display: flex;
+        justify-content: center;
+    }
+    .buy_content .buy_right_content h1 img{
+        display: block;
+        width: 40%;
+    }
+
+    .buy_content .buy_right_content h1 img{
+        display: block;
+        width: 40%;
+
+    }
+
+    .view_btn {
+        position: absolute;
+        bottom: 120px;
+        left: 50%;
+        transform: translateX(-50%);
+        -webkit-transform: translateX(-50%);
+        width: 350px;
+        height: 70px;
+        outline: none;
+        border: none;
+        background: url("../../assets/images/buy/opensea.jpg") center/95% 95% no-repeat;
+    }
+    .buy_btn{
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        -webkit-transform: translateX(-50%);
+        width: 270px;
+        height: 70px;
+        outline: none;
+        border: none;
+        background: url("../../assets/images/buy/buyBtn.png") center/95% 95% no-repeat;
+    }
+    .buy_nft_action_mobile {
+        display: none;
+    }
+    @media (max-width: 1120px) {
+
+        .buy_content .buy_right_content h1 img{
+            width: 60%;
+        }
+        .buy_right_content .buy_btn{
+            width: 180px;
+            height: 50px;
+        }
+        .buy_right_content .view_btn{
+            width: 250px;
+            height: 50px;
+            bottom: 90px;
+        }
+        .buy_content .buy_nft_visualizer {
+            padding: 80px 122px 43px 53px;
+        }
+        .buy_nft_visualizer_content .buy_nft_img {
+            height: 240px;
+            width: 100%;
+            background-size: 60px;
+        }
+        .buy_nft_visualizer_content {
+            width: 260px;
+            min-height: 385px;
+        }
+        .buy_nft_visualizer_content .buy_nft_img .buy_nft {
+            width: 299px;
+        }
+
+        .buy_content .buy_nft_visualizer:before,.buy_content .buy_nft_visualizer:after  {
+            clip-path: polygon(100% 0, 88% 100%, 0 100%, 0 0);
+        }
+    }
+    @media (max-width: 991px) {
+        .buy_content{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .buy_content .buy_nft_visualizer:before,
+        .buy_content .buy_nft_visualizer:after,
+        .buy_content .buy_right_content:after,
+        .buy_content .buy_right_content:before{
+            background: unset;
+        }
+        .buy_nft_action{
+            display: none;
+        }
+        .buy_content .buy_right_content h1 img{
+              display: block;
+              width: 300px;
+          }
+        .buy_nft_action_mobile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 11;
+        }
+        .buy_nft_action_mobile button{
+            position: static !important;
+            transform: none;
+            margin-bottom: 10px;
+        }
+        .buy_content:before{
+            border: none;
+        }
+    }
+</style>
+
+<div class="buy_content">
+    <div class="buy_nft_visualizer">
+        <div class="buy_nft_visualizer_content">
+            <div class="buy_nft_img">
+                <img class="buy_nft_img" style="background: unset" src="../../assets/images/buy/nftimg.png" alt="bear">
+                <img class="buy_nft" src="../../assets/images/buy/redimage.png" alt="bear">
+            </div>
+            <div class="buy_nft_action_wrapper">
+                <span class="buy_nft_info"> Price: </span>
+                <span class="buy_nft_action_price">0.26</span>
+                <span class="buy_nft_symbol">ETH</span>
+            </div>
+            <div class="buy_nft_action_wrapper">
+                <span class="buy_nft_info">Amount:</span>
+                <div class="buy_action_btn">
+                    <img src="../../assets/images/buy/btn_reduce.png" class="amount_reduce"
+                         alt="minus"/>
+                    <span
+                            class="buy_nft_action_amount">1</span>
+                    <img
+                            src="   ../../assets/images/buy/btn_add.png" class="amount_add"
+                            alt="add"/></div>
+            </div>
+        </div>
+    </div>
+    <div class="buy_nft_action buy_nft_action_mobile">
+        <button id="mobile_view_btn" class="view_btn"></button>
+        <button id="mobile_buy_btn" class="buy_btn"></button>
+    </div>
+    <div class="buy_right_content">
+        <h1><img src="../../assets/images/buy/title.png" alt=""></h1>
+        <div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <div class="buy_nft_action">
+                <button id="view_btn" class="view_btn"></button>
+                <button id="buy_btn" class="buy_btn"></button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="module">
+    import web3 from '../../assets/js/connectWallet.js';
+    import {Whitepaper} from '../../assets/Whitepaper.js'
+    console.log('Whitepaper>>>', Whitepaper)
+
+    const {ethers , Contract, BigNumber, utils} =web3;
+    // buy modules
+    $(() => {
+        const connectorId = sessionStorage.getItem('connector');
+        if (connectorId) {
+            if (connectorId === 'metamask') {
+                window.web3Provider = new ethers.providers.Web3Provider(window.ethereum);
+            }
+            if (connectorId === 'walletConnect'){
+                const _provider = new WalletConnectProvider({ rpc: {} })
+                window.web3Provider = new ethers.providers.Web3Provider(_provider)
+            }
+        }
+
+        const address = '0xA08Be7e395Ddc97de02ad1380d17eA9bAc771611';
+        const oPrice = $('.buy_nft_action_price');
+        const nftPrice = 0.05;
+        let price = oPrice.text(nftPrice);
+        let oBuyAmount = $('.buy_nft_action_amount');
+
+        $('.amount_add').on('click', function(){
+            let a = Number(oBuyAmount.text())
+            a++
+            console.log('1111')
+            oBuyAmount.text(a)
+            price =  (a*nftPrice).toFixed(3);
+            oPrice.text(price)
+        })
+        $('.amount_reduce').on('click', function(){
+            let a = Number(oBuyAmount.text())
+            if (a<=1) {
+                return;
+            }
+            a--
+            oBuyAmount.text(a)
+            price = (a*nftPrice).toFixed(3);``
+            oPrice.text(price)
+        })
+
+
+        $('.buy_content')
+            .on('click', '.buy_nft_action_mobile', ()=>{
+                console.log('1')
+            })
+            .on('click', '#view_btn, #mobile_view_btn', () => {
+                window.open('https://opensea.io')
+            })
+            .on('click', '#buy_btn, #mobile_buy_btn',async () => {
+                if (connectorId) {
+                    console.log(window.ethereum)
+                    if (!window.ethereum) {
+                        alert('Please connect wallet first')
+                    }
+                    // console.log(web3Provider.getNe)
+                    if (!ethereum.selectedAddress) {
+                        $('#connect-but').click();
+
+                    }else {
+                        if (connectorId === 'metamask') {
+                            window.web3Provider = new ethers.providers.Web3Provider(window.ethereum);
+                        }
+                        if (connectorId === 'walletConnect'){
+                            const _provider = new WalletConnectProvider({ rpc: {} })
+                            window.web3Provider = new ethers.providers.Web3Provider(_provider)
+                        }
+                        console.log('web3Provider>>>', web3Provider)
+                        if (web3Provider) {
+                            const formattedChainId = utils.hexStripZeros(BigNumber.from(4).toHexString())
+                            console.log()
+                            if (Number(web3Provider.provider.chainId) !== 4) {
+                                alert('Please switch to the rinkeby test network');
+                                await web3Provider.provider.request({
+                                    method: 'wallet_switchEthereumChain',
+                                    params: [{ chainId: formattedChainId }]})
+                                return;
+                            }
+                            const account = web3Provider.provider.address;
+                            const signer = web3Provider.getSigner(account)
+                            const contract = new Contract(address, Whitepaper, signer);
+                            console.log(oBuyAmount.text())
+                            const tx = {
+                                gasLimit: 1000000 * oBuyAmount.text(),
+                                value: ethers.utils.parseEther(`${nftPrice * oBuyAmount.text()}`), // transfer value ->>  buy nft amount
+                            }
+                            const totalSupply = await contract.totalSupply();
+                            console.log("totalSupply>>>", totalSupply)
+                            // call contract methods ->>  buy action
+                            const mint = await contract.mint(oBuyAmount.text(), tx)
+                            console.log(mint)
+                            const result = await mint.wait();
+                            console.log('result>>', result)
+                        }
+                    }
+
+                }else{
+                    alert('Wallet not connected')
+                }
+            })
+    })
+</script>

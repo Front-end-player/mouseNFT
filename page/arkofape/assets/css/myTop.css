@@ -1,5 +1,6 @@
 #topNone {
     margin-bottom: 100px;
+    z-index: 111;
 }
 #drinkape-div {
     background-color: #292845;
@@ -26,7 +27,7 @@
 }
 html body{
     margin: 0;
-    padding: 0;    
+    padding: 0;
     background-color: #292845;
 }
 
@@ -39,7 +40,7 @@ html body{
     #down-bg {
         position: sticky;
         bottom: 0;
-    }    
+    }
     #drinkape-div h1 {
         font-size: 20px;
     }

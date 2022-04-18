@@ -21,7 +21,8 @@
     <link rel="stylesheet" href="assets/css/buy.css">
     <link rel="stylesheet" href="assets/css/modal.css">
     <!-- libs -->
-    <script src="assets/js/lib/dev/jQuery.js"></script>
+<!--    <script src="assets/js/lib/dev/jQuery.js"></script>-->
+    <script src="assets/js/lib/jquery-3.3.1.min.js"></script>
     <!--    <script src="dist/WalletConnectProvider.js"></script>-->
     <!--  <script src="https://cdn.ethers.io/scripts/ethers-v4.min.js" charset="utf-8"  type="text/javascript"></script>
     --> <!-- <script src="assets/js/lib/jquery-3.3.1.min.js"></script>-->
@@ -98,6 +99,7 @@
     <script type="text/javascript">
         //Loading页面
         document.onreadystatechange = function () {
+            console.log(document.readyState)
             if (document.readyState == "complete") {
                 loadingFade();
             }
@@ -155,7 +157,7 @@
         <div class="menu-toggle"><img alt="" src="assets/images/button/bar.png" width="50vw"></div>
         <!--		<div class="menu-toggle"><i class="fa-american-sign-language-interpreting" aria-hidden="true"></i></div>-->
     </div>
-    <!-- buy NFT -->
+  <!--  &lt;!&ndash; buy NFT &ndash;&gt;
     <div class="buy_wrapper" id="buy_content">
         <div class="buy_content">
             <div class="buy_nft_visualizer">
@@ -177,7 +179,7 @@
             </div>
         </div>
     </div>
-    <!-- 递进场景 -->
+  -->  <!-- 递进场景 -->
     <div id="scenes-div" class="other-div">
         <img class="scenes" id="scene1" src="assets/images/scene/scene-m-0.png" alt="">
         <img class="scenes" id="scene2" src="assets/images/scene/scene-m-1.png" alt="">
@@ -542,102 +544,11 @@
         console.dir(myvideo2)
         // myvideo2.play();
     }
-</script>
-
-<script type="module">
-    import web3 from './assets/js/connectWallet.js';
-    import {Whitepaper} from './assets/Whitepaper.js'
-    console.log('Whitepaper>>>', Whitepaper)
-
-    const {ethers , Contract, BigNumber} =web3;
-    // buy modules
-    $(() => {
-        const connectorId = sessionStorage.getItem('connector');
-        if (connectorId) {
-            if (connectorId === 'metamask') {
-                window.web3Provider = new ethers.providers.Web3Provider(window.ethereum);
-            }
-            if (connectorId === 'walletConnect'){
-                const _provider = new WalletConnectProvider({ rpc: {} })
-                window.web3Provider = new ethers.providers.Web3Provider(_provider)
-            }
-
-            $("#scene6").on('click', () => {
-                console.log(11)
-                $('.buy_wrapper').show();
-                $('body,html').animate({
-                    scrollTop: 0
-                }, 200)
-            })
-            $('body')
-                .on('click', '.view_btn', () => {
-                    window.open('https://opensea.io')
-                })
-                .on('click', '.buy_btn',async () => {
-                    if (connectorId) {
-                        if (connectorId === 'metamask') {
-                            window.web3Provider = new ethers.providers.Web3Provider(window.ethereum);
-                        }
-                        if (connectorId === 'walletConnect'){
-                            const _provider = new WalletConnectProvider({ rpc: {} })
-                            window.web3Provider = new ethers.providers.Web3Provider(_provider)
-                        }
-                        if (web3Provider) {
-                            console.log(web3Provider)
-                            const account = web3Provider.provider.address;
-                            const signer = web3Provider.getSigner(account)
-                            const contract = new Contract(address, Whitepaper, signer);
-                            console.log(oBuyAmount.text())
-                            const tx = {
-                                gasLimit: 1000000 * oBuyAmount.text(),
-                                value: ethers.utils.parseEther(`${nftPrice * oBuyAmount.text()}`), // transfer value ->>  buy nft amount
-                            }
-                            const totalSupply = await contract.totalSupply();
-                            console.log("totalSupply>>>", totalSupply)
-                            // call contract methods ->>  buy action
-                            const mint = await contract.mint(oBuyAmount.text(), tx)
-                            console.log(mint)
-                            const result = await mint.wait();
-                            console.log('result>>', result)
-                        }
-                    }else{
-                        alert('Wallet not connected')
-                    }
-                })
-            // oBuyAmount.text(buyAmount)
-            $('.amount_add').on('click', function(){
-                let a = Number(oBuyAmount.text())
-                a++
-                console.log('1111')
-                oBuyAmount.text(a)
-                price =  (a*nftPrice).toFixed(3);
-                oPrice.text(price)
-            })
-            $('.amount_reduce').on('click', function(){
-                let a = Number(oBuyAmount.text())
-                if (a<=1) {
-                    return;
-                }
-                a--
-                oBuyAmount.text(a)
-                price = (a*nftPrice).toFixed(3);``
-                oPrice.text(price)
-            })
-
-
-        }else{
-            alert('Wallet not connected')
-        }
-
-
-        const address = '0xA08Be7e395Ddc97de02ad1380d17eA9bAc771611';
-        const oPrice = $('.price');
-        const nftPrice = 0.05;
-        let price = oPrice.text(nftPrice);
-        let oBuyAmount = $('.buy_amount');
-
-
+    $('#scene6').click(()=>{
+        window.open('./page/arkofape/arkofape.html')
     })
 </script>
+
+
 </body>
 </html>
