@@ -70,6 +70,46 @@
         #buy_wrap {
             padding-bottom: 100px;
         }
+        @media (max-width: 991px) {
+            .NavigationBar{
+                height: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: space-evenly;
+            }
+            #logo{
+                position: static;
+                height: auto;
+                line-height: 1;
+            }
+            .menu-toggle {
+                position: static;
+                line-height: 1;
+                height: auto;
+            }
+            .menu-toggle img{
+                width: 30px;
+            }
+            #connect-wallet-but-div {
+                position: static;
+            }
+            .NavigationBar nav.active {
+                top: 50px;
+                width: 100px;
+            }
+            .connect-but {
+                border-radius: 5px;
+            }
+            .NavigationBar nav ul li a img {
+                width: 20px;
+            }
+            .NavigationBar nav ul li a {
+                height: 40px;
+                line-height: 40px;
+                margin: 5px;
+                border-radius: 5px;
+            }
+        }
     </style>
 </head>
 
@@ -129,7 +169,7 @@
             <nav>
                 <ul>
                     <li><a href="../../index.html"><strong class="menu-buts">HOME</strong></a></li>
-                    <li><a href="arkofape.html"><strong class="menu-buts">GAMEFI</strong></a></li>
+                    <li><a href="arkofape.html"><strong class="menu-buts">BUY</strong></a></li>
                     <li><a href="../../index.html#nft_wrap"><strong class="menu-buts">NFTS</strong></a></li>
                     <li><a href="#"><img alt="" src="../../assets/images/button/f.png" width="20" class="menu-buts"></a>
                     </li>
