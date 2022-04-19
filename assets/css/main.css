@@ -39,9 +39,6 @@ body {
     height: 100%;
     z-index: 9999;
 }
-#loading_bg {
-    background-color: rgba(0, 0, 0, 1);
-}
 /*
 body {
   background: #eaecfa;
