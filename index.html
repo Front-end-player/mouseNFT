@@ -142,13 +142,15 @@
                 <ul>
                     <li><a href="index.html"><strong class="menu-buts">HOME</strong></a></li>
                     <li><a href="page/arkofape/arkofape.html"><strong class="menu-buts">BUY</strong></a></li>
-                    <li><a href="#nft_wrap"><strong class="menu-buts">NFTS</strong></a></li>
+                    <li><a id="toNft" href="#nft_content"><strong class="menu-buts">NFTS</strong></a></li>
                     <li><a href="#"><img alt="" src="assets/images/button/f.png" width="20" class="menu-buts"></a></li>
                     <li><a href="#"><img alt="" src="assets/images/button/fb.png" width="20" class="menu-buts"></a></li>
-                    <li><a href="https://twitter.com/BLUEFIR59376829"><img alt="" src="assets/images/button/g.png"
+                    <li><a href="https://twitter.com/BLUEFIR59376829">
+                        <img alt="" src="assets/images/button/g.png"
                                                                            width="20" class="menu-buts" target="_blank"></a>
                     </li>
-                    <li><a href="https://www.instagram.com/bluefire7425/"><img alt="" src="assets/images/button/o.png"
+                    <li><a href="https://www.instagram.com/bluefire7425/">
+                        <img alt="" src="assets/images/button/o.png"
                                                                                width="20" class="menu-buts"
                                                                                target="_blank"
                                                                                rel="noopener noreferrer"></a></li>
@@ -550,6 +552,21 @@
     }
     $('#scene6').click(()=>{
         window.open('./page/arkofape/arkofape.html')
+    })
+
+    if(location.hash.includes('nft_content')) {
+        $('body, html').animate({
+            scrollTop: $('#nft_wrap').offset().top - 150
+        }, 300)
+    }
+
+    $('#toNft').click(()=>{
+        $('body, html').animate({
+            scrollTop: $('#nft_wrap').offset().top - 150
+        }, 300)
+    })
+    $('.NavigationBar').on('click','nav a', ()=>{
+        $('nav').removeClass('active');
     })
 </script>
 
